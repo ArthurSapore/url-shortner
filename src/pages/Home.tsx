@@ -1,5 +1,5 @@
-import { ModeToggle } from '@/components/Custom/ModeToogle'
-import { Badge } from '@/components/ui/badge'
+import { ModeToggle } from '@/zenith-ui/components/Custom/ModeToogle'
+import { Badge } from '@/zenith-ui/components/ui/badge'
 
 export const Home = (): JSX.Element => {
    return (

@@ -1,10 +1,11 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RouterProvider } from 'react-router-dom'
 import './App.css'
-import { ToastDemo } from './components/Custom/ToastDemo'
-import { Toaster } from './components/ui/toaster'
-import { ThemeProvider } from './providers/theme/ThemeProvider'
+
 import { router } from './routes/index'
+import { ToastDemo } from './zenith-ui/components/Custom/ToastDemo'
+import { Toaster } from './zenith-ui/components/ui/toaster'
+import { ThemeProvider } from './zenith-ui/providers/theme/ThemeProvider'
 
 const queryClient = new QueryClient()
 

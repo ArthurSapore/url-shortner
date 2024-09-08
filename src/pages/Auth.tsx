@@ -1,8 +1,8 @@
 import { z } from 'zod'
 
-import { FormFieldCustom } from '@/components/Custom/FormField/FormFieldCustom'
-import { Button } from '@/components/ui/button'
-import { Form } from '@/components/ui/form'
+import { FormFieldCustom } from '@/zenith-ui/components/Custom/FormField/FormFieldCustom'
+import { Button } from '@/zenith-ui/components/ui/button'
+import { Form } from '@/zenith-ui/components/ui/form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
