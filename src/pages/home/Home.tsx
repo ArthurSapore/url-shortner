@@ -1,7 +1,11 @@
+import { useUserStore } from '@/store/UserStore'
 import { ModeToggle } from '@/zenith-ui/components/Custom/ModeToogle'
+import { ToastDemo } from '@/zenith-ui/components/Custom/ToastDemo'
 import { Badge } from '@/zenith-ui/components/ui/badge'
 
 export const Home = (): JSX.Element => {
+   const { user } = useUserStore()
+   console.log(user)
    return (
       <div className=" h-screen w-screen bg-primary-foreground flex justify-center items-center">
          <ModeToggle />
@@ -11,6 +15,7 @@ export const Home = (): JSX.Element => {
          >
             Time A - vxMedical
          </Badge>
+         <ToastDemo />
          <ReactQueryTest />
       </div>
    )

@@ -3,7 +3,6 @@ import { RouterProvider } from 'react-router-dom'
 import './App.css'
 
 import { router } from './routes/index'
-import { ToastDemo } from './zenith-ui/components/Custom/ToastDemo'
 import { Toaster } from './zenith-ui/components/ui/toaster'
 import { ThemeProvider } from './zenith-ui/providers/theme/ThemeProvider'
 
@@ -17,7 +16,6 @@ function App() {
             storageKey="vite-ui-theme"
          >
             <RouterProvider router={router} />
-            <ToastDemo />
             <Toaster />
          </ThemeProvider>
       </QueryClientProvider>
