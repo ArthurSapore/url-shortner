@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RouterProvider } from 'react-router-dom'
-import './App.css'
+import './zenith-ui/styles/global/App.css'
 
 import { router } from './routes/index'
 import { Toaster } from './zenith-ui/components/ui/toaster'

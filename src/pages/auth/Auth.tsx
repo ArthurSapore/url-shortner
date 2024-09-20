@@ -36,28 +36,46 @@ export const Auth = (): JSX.Element => {
 
    return (
       <div className="flex items-center justify-center w-screen h-screen bg-primary-foreground">
-         <Form {...form}>
-            <form
-               onSubmit={form.handleSubmit(onSubmit)}
-               className="space-y-8"
-            >
-               <FormFieldCustom
-                  formController={form.control}
-                  label="Email"
-                  name="email"
-                  placeholder="Email"
-                  description={'Teste'}
-               />
+         <div className=" border border-border p-10 rounded-md w-[23rem] space-y-2">
+            <Form {...form}>
+               <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-8"
+               >
+                  <FormFieldCustom
+                     formController={form.control}
+                     label="Email"
+                     name="email"
+                     placeholder="Email"
+                  />
 
-               <FormFieldCustom
-                  formController={form.control}
-                  label="Password"
-                  name="password"
-                  placeholder="Password"
-               />
-               <Button type="submit">Submit</Button>
-            </form>
-         </Form>
+                  <FormFieldCustom
+                     formController={form.control}
+                     label="Slug"
+                     name="slug"
+                     placeholder="Slug"
+                     description="Your company slug"
+                  />
+
+                  <FormFieldCustom
+                     formController={form.control}
+                     label="Password"
+                     name="password"
+                     placeholder="Password"
+                  />
+                  <Button
+                     type="submit"
+                     className="w-full"
+                  >
+                     Submit
+                  </Button>
+               </form>
+               <div className="flex justify-center items-center">
+                  <p className="text-xs">Don't have an account?</p>
+                  <Button variant={'link'}>Register now</Button>
+               </div>
+            </Form>
+         </div>
       </div>
    )
 }
