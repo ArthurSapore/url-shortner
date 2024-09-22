@@ -9,11 +9,11 @@ export type userTP = {
 }
 
 export class AuthRequests {
-    static auth = (data: AuthSchemaTP): RequestTP<AuthSchemaTP> => ({
-        url: 'https://669c3ead276e45187d37982f.mockapi.io/user',
+    static login = (data: AuthSchemaTP, header: string): RequestTP<AuthSchemaTP> => ({
+        url: 'http://localhost:3007/auth/login',
         method: "POST",
-        headers: {"Content-Type":"application/json"},
-        params: data
+        headers: {"Content-Type": "application/json", schema: header},
+        data: data
     })
 
     static getUser = (id: string): RequestTP<userTP> =>({
