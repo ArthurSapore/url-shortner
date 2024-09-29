@@ -1,10 +1,15 @@
-import { userTP } from '@/services/auth/AuthRequests'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
+type userStoreTP ={
+    name: string
+    email: string
+    accessToken: string
+}
+
 interface UserStore {
-    user: userTP | null
-    setUser: (user: userTP)=> void
+    user: userStoreTP | null
+    setUser: (user: userStoreTP)=> void
     clearUser: ()=> void
 }
 
