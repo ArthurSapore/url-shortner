@@ -1,4 +1,7 @@
-import { createRandomShortnedUrlResponseData } from '@/helpers/FakerShortnedURLResponse'
+import {
+   createRandomShortnedUrlResponseData,
+   shortnedURLdataTP
+} from '@/helpers/FakerShortnedURLResponse'
 import { TableProvider } from '@/zenith-ui/components/Custom/Table/context/TableContext'
 import { TableBodyCustom } from '@/zenith-ui/components/Custom/Table/table-body/TableBodyCustom'
 import { TableHeaderCustom } from '@/zenith-ui/components/Custom/Table/table-header/TableHeaderCustom'
@@ -10,10 +13,16 @@ import {
    getSortedRowModel,
    useReactTable
 } from '@tanstack/react-table'
+import { useEffect, useState } from 'react'
 import { TableLinkColumnHelper } from './helper/TableLinkColumnHelper'
 
 export const TableLinks = (): JSX.Element => {
-   const data = createRandomShortnedUrlResponseData()
+   const [data, setData] = useState<shortnedURLdataTP[]>([])
+
+   useEffect(() => {
+      setData(createRandomShortnedUrlResponseData())
+   }, [])
+
    const columns = TableLinkColumnHelper()
 
    const table = useReactTable({
