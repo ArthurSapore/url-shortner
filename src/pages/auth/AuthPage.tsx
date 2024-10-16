@@ -1,9 +1,8 @@
-import {
-   AuthResponseDTO,
-   AuthSchemaTP,
-   authSchema
-} from '@/schemas/auth/authSchema'
+import { Routes } from '@/routes'
+import { AuthResponseDTO, AuthSchemaTP, authSchema } from '@/schemas/auth/authSchema'
+import { BaseURL } from '@/services'
 import { AuthRequests } from '@/services/auth/AuthRequests'
+import { BaseAPIResponseDTO } from '@/services/BaseAPIResponseDTO'
 import { useUserStore } from '@/store/UserStore'
 import { FormFieldCustom } from '@/zenith-ui/components/Custom/form/form-field/FormFieldCustom'
 import { Button } from '@/zenith-ui/components/ui/button'
@@ -14,38 +13,45 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import md5 from 'md5'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 export const AuthPage = (): JSX.Element => {
    const { setUser } = useUserStore()
-   const { runRequest } = useRequest<AuthSchemaTP, AuthResponseDTO>()
+   const { runRequest } = useRequest<AuthSchemaTP, BaseAPIResponseDTO<AuthResponseDTO>>()
+   const navigate = useNavigate()
 
    const form = useForm<AuthSchemaTP>({
       resolver: zodResolver(authSchema)
    })
 
    async function authRequest(data: AuthSchemaTP) {
-      const jsonRequest = AuthRequests.login(data)
+      const requestConfig = AuthRequests.login(data)
       return await runRequest({
-         ...jsonRequest,
-         headers: { ...jsonRequest.headers, schema: data.slug }
+         ...requestConfig,
+         headers: { ...requestConfig.headers, schema: data.slug }
       })
    }
 
-   function handleFormSubmit(data: AuthSchemaTP) {
+   function handleFormSubmit(data: AuthSchemaTP): void {
       authRequestMutation.mutateAsync({ ...data, password: md5(data.password) })
    }
 
    const authRequestMutation = useMutation({
       mutationFn: (data: AuthSchemaTP) => authRequest(data),
-      mutationKey: ['authRequest'],
+      mutationKey: [
+         `${BaseURL.API}/${AuthRequests.CONTROLLER_ROOT}/${AuthRequests.LOGIN_EP}`
+      ],
       onSuccess(data) {
-         if (data) setUser(data)
+         if (data) {
+            setUser(data.data)
+            navigate(Routes.ROOT)
+         }
       }
    })
 
    return (
-      <div className="flex items-center justify-center w-screen h-screen bg-primary-foreground">
-         <div className=" border border-border p-10 rounded-md w-[23rem] space-y-2">
+      <div className="flex h-screen w-screen items-center justify-center bg-primary-foreground">
+         <div className="w-[23rem] space-y-2 rounded-md border border-border p-10">
             <Form {...form}>
                <form
                   onSubmit={form.handleSubmit(handleFormSubmit)}
@@ -86,7 +92,7 @@ export const AuthPage = (): JSX.Element => {
                      Submit
                   </Button>
                </form>
-               <div className="flex justify-center items-center">
+               <div className="flex items-center justify-center">
                   <p className="text-xs">Don't have an account?</p>
                   <Button variant={'link'}>Register now</Button>
                </div>

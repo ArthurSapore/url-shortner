@@ -8,7 +8,6 @@ export const authSchema = z.object({
  
 export type AuthSchemaTP = z.infer<typeof authSchema>
 
-
 export type AuthResponseDTO = {
     name: string
     email: string

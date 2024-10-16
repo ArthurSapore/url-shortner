@@ -18,7 +18,7 @@ export const useUserStore = create<UserStore>()(
         (set)=>  ({
 
             user: null,
-            setUser:(newUser) => set({user: newUser}),
+            setUser:(user) => set({user: user}),
             clearUser: ()=> set({user: null})
         }),
         {
@@ -27,4 +27,3 @@ export const useUserStore = create<UserStore>()(
         }  
     )
 )
-
