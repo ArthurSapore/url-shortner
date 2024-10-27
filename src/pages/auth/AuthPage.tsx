@@ -7,7 +7,7 @@ import { useUserStore } from '@/store/UserStore'
 import { FormFieldCustom } from '@/zenith-ui/components/Custom/form/form-field/FormFieldCustom'
 import { Button } from '@/zenith-ui/components/ui/button'
 import { Form } from '@/zenith-ui/components/ui/form'
-import InputPassword, { Input } from '@/zenith-ui/components/ui/input'
+import { Input } from '@/zenith-ui/components/ui/input'
 import { useRequest } from '@/zenith-ui/services/hooks/useRequest'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
@@ -82,7 +82,7 @@ export const AuthPage = (): JSX.Element => {
                      name="password"
                      placeholder="Password"
                   >
-                     <InputPassword />
+                     <Input.Password />
                   </FormFieldCustom>
 
                   <Button
