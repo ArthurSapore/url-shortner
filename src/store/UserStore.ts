@@ -7,7 +7,7 @@ type userStoreTP ={
     accessToken: string
 }
 
-interface UserStore {
+export interface UserStore {
     user: userStoreTP | null
     setUser: (user: userStoreTP)=> void
     clearUser: ()=> void

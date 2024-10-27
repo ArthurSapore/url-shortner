@@ -4,6 +4,8 @@ import { Button } from '@/zenith-ui/components/ui/button'
 import { Form } from '@/zenith-ui/components/ui/form'
 import { Input } from '@/zenith-ui/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { jwtDecode } from 'jwt-decode'
+
 import { useForm } from 'react-hook-form'
 
 export const RegisterPage = (): JSX.Element => {
@@ -14,6 +16,11 @@ export const RegisterPage = (): JSX.Element => {
    function handleSubmit(formValues: registerTP): void {
       console.log(formValues)
    }
+   const expiration = jwtDecode(
+      'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VyQ29kZSI6MjI0NTU0LCJ0eXBlIjoiVVNFUiIsImlhdCI6MTczMDA0NjkyNiwiZXhwIjoxNzMwMTMzMzI2LCJhdWQiOiJ1cm46YmVlcmFkcyJ9.F_EQgYnYkA0H69Lw02EiHAd32V8ziJUuXEEwzjzYeecMKirmrF-NrMXGMkmKCMwQZYK8Z0lqYlie0cBiKnNhKg'
+   ).exp
+
+   console.log(expiration)
 
    return (
       <div className="flex h-screen w-screen items-center justify-center bg-primary-foreground">
